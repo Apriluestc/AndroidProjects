@@ -3,6 +3,8 @@ package com.android.camera;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.room.Room;
 
 import android.content.Intent;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import com.android.camera.room.CameraDao;
 import com.android.camera.room.CameraDatabase;
 import com.android.camera.room.CameraEntity;
+import com.android.camera.room.CameraViewModel;
 import com.android.camera.settings.CameraSettingsActivity;
 
 import java.util.List;
@@ -23,9 +26,7 @@ import java.util.List;
 @SuppressWarnings("ALL")
 public class CameraActivity extends AppCompatActivity implements View.OnClickListener {
 
-    CameraDao mCameraDao;
-    CameraDatabase mCameraDatabase;
-    LiveData<List<CameraEntity>> allCameraEntity;
+    CameraViewModel mCameraViewModel;
 
     TextView textView;
     Button bt_test, bt_insert, bt_clear;
@@ -33,12 +34,9 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_activity);
-        mCameraDatabase = Room.databaseBuilder(this, CameraDatabase.class, "camera_data")
-                .build();
-        mCameraDao = mCameraDatabase.getDaoBasic();
-        allCameraEntity = mCameraDao.getAllCameraEntityOfLiveData();
+        mCameraViewModel = ViewModelProviders.of(this).get(CameraViewModel.class);
         initView();
-        allCameraEntity.observe(this, new Observer<List<CameraEntity>>() {
+        mCameraViewModel.getAllCameraEntity().observe(this, new Observer<List<CameraEntity>>() {
             @Override
             public void onChanged(List<CameraEntity> entityBasics) {
                 StringBuilder text = new StringBuilder();
@@ -65,44 +63,13 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.insert:
-                new InsertAsyncTasked(mCameraDao)
-                        .execute(new CameraEntity("hello", "你好", "1"));
+                mCameraViewModel.insert(new CameraEntity("hello", "你好", "1"));
                  break;
             case R.id.clear:
-                new ClearAsyncTasked(mCameraDao)
-                        .execute();
+                mCameraViewModel.clear();
                 break;
             default:
                 break;
-        }
-    }
-
-
-    static class InsertAsyncTasked extends AsyncTask<CameraEntity, Void, Void> {
-        private CameraDao daoBasic;
-
-        public InsertAsyncTasked(CameraDao cameraDao) {
-            this.daoBasic = cameraDao;
-        }
-
-        @Override
-        protected Void doInBackground(CameraEntity... cameraEntities) {
-            daoBasic.insert(cameraEntities);
-            return null;
-        }
-    }
-
-    static class ClearAsyncTasked extends AsyncTask<CameraEntity, Void, Void> {
-        private CameraDao daoBasic;
-
-        public ClearAsyncTasked(CameraDao cameraDao) {
-            this.daoBasic = cameraDao;
-        }
-
-        @Override
-        protected Void doInBackground(CameraEntity... cameraEntities) {
-            daoBasic.clear();
-            return null;
         }
     }
 }
