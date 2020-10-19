@@ -19,6 +19,17 @@ public class CameraEntity {
     @ColumnInfo
     private String defaultValue;
 
+    @ColumnInfo (name = "newInfo")
+    private boolean flag;
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
     public CameraEntity(String key, String value, String defaultValue) {
         this.key = key;
         this.value = value;

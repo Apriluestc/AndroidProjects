@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".settings.SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
+        <activity
             android:name=".settings.CameraSettingsActivity"
             android:label="@string/title_activity_camera_settings" />
         <activity android:name=".CameraActivity">

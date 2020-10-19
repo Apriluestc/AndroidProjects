@@ -20,6 +20,7 @@ import com.android.camera.room.CameraDatabase;
 import com.android.camera.room.CameraEntity;
 import com.android.camera.room.CameraViewModel;
 import com.android.camera.settings.CameraSettingsActivity;
+import com.android.camera.settings.SettingsActivity;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     CameraViewModel mCameraViewModel;
 
     TextView textView;
-    Button bt_test, bt_insert, bt_clear;
+    Button bt_test, bt_insert, bt_clear, bt_settings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +57,9 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         bt_clear = findViewById(R.id.clear);
         bt_clear.setOnClickListener(this);
 
+        bt_settings = findViewById(R.id.settings);
+        bt_settings.setOnClickListener(this);
+
         textView = findViewById(R.id.text);
     }
 
@@ -67,6 +71,9 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                  break;
             case R.id.clear:
                 mCameraViewModel.clear();
+                break;
+            case R.id.settings:
+                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                 break;
             default:
                 break;

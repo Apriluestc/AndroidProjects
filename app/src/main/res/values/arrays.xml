@@ -9,4 +9,26 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+    <string-array name="shortcut_key_to_take_photos_entries">
+        <item>Reply</item>
+        <item>Reply to all</item>
+    </string-array>
+
+    <string-array name="shortcut_key_to_take_photos_values">
+        <item>reply</item>
+        <item>reply_all</item>
+    </string-array>
+
+    <string-array name="slow_motion_video_resolution_entries">
+        <item>Reply</item>
+        <item>Reply to all</item>
+    </string-array>
+
+    <string-array name="slow_motion_video_resolution_values">
+        <item>reply</item>
+        <item>reply_all</item>
+    </string-array>
+
+    slow_motion_video_resolution
 </resources>

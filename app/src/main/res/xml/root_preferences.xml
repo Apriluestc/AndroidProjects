@@ -1,0 +1,87 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="通用"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            app:key="sync"
+            app:title="快门声音"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            app:key="sync"
+            app:title="保存地理位置信息"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            app:key="sync"
+            app:title="优先SD卡存储"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            app:key="sync"
+            app:title="自拍镜象"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="拍照"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            app:key="sync"
+            app:title="网格"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            app:key="sync"
+            app:title="AI场景识别"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            app:key="sync"
+            app:title="智能HDR拍照"
+            app:iconSpaceReserved="false" />
+
+        <ListPreference
+            app:defaultValue="shortcut_key_to_take_photos"
+            app:entries="@array/shortcut_key_to_take_photos_entries"
+            app:entryValues="@array/shortcut_key_to_take_photos_values"
+            app:key="shortcut_key_to_take_photos"
+            app:title="快捷键拍照"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="视频"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            app:key="sync"
+            app:title="视频防抖"
+            app:iconSpaceReserved="false" />
+
+        <Preference app:title="视频分辨率"
+            app:iconSpaceReserved="false">
+        </Preference>
+
+        <ListPreference
+            app:defaultValue="reply"
+            app:entries="@array/slow_motion_video_resolution_entries"
+            app:entryValues="@array/slow_motion_video_resolution_values"
+            app:key="reply"
+            app:title="慢动作视频分辨率"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="其他"
+        app:iconSpaceReserved="false">
+        <DropDownPreference
+            app:title="恢复出场设置"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
